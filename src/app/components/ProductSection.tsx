@@ -3,9 +3,9 @@ import { ImageWithFallback } from '@/app/components/figma/ImageWithFallback';
 import { Check, Truck, CreditCard, ShieldCheck, Plus, Minus, ShoppingCart } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-import img1 from "figma:asset/8e652a8b1180cde524439f5637957f631c55980f.png";
-import img2 from "figma:asset/4b0f7ecb14332393702cef93576c2569ebdd7b1c.png";
-import img3 from "figma:asset/99e70e91130c3a6094990ded993846208561c21f.png";
+import img1 from "../../assets/8e652a8b1180cde524439f5637957f631c55980f.png";
+import img2 from "../../assets/4b0f7ecb14332393702cef93576c2569ebdd7b1c.png";
+import img3 from "../../assets/99e70e91130c3a6094990ded993846208561c21f.png";
 
 interface ProductProps {
   quantity: number;
