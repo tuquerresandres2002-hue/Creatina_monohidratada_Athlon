@@ -17,7 +17,8 @@ export const ProductSection = ({ quantity, setQuantity, total }: ProductProps) =
   const pricePerUnit = 24;
   const shippingCost = 6;
   const subtotal = quantity * pricePerUnit;
- const totalConEnvio = subtotal + shippingCost;
+  const totalConEnvio = subtotal + shippingCost;
+  const [showBankDetails, setShowBankDetails] = React.useState(false);
   return (
     <section id="comprar" className="py-32 bg-white text-black">
       <div className="max-w-7xl mx-auto px-4 space-y-24">
@@ -134,16 +135,73 @@ export const ProductSection = ({ quantity, setQuantity, total }: ProductProps) =
                 </div>
               </div>
             </div>
-
-            <button 
+{/* Botón Principal de Pedido corregido */}
+<button 
   data-tally-open="jaoKYY" 
   data-tally-emoji-animation="none"
-  // Aquí enviamos dinámicamente las unidades y el precio final con envío
   data-tally-hidden-fields={`unidades=${quantity}&total=${totalConEnvio}`}
-  className="w-full bg-red-600 text-white py-4 rounded-xl font-bold text-xl hover:bg-red-700 transition-all transform active:scale-95 shadow-lg"
+  className="w-full bg-red-600 text-white py-4 rounded-xl font-black text-xl hover:bg-red-700 transition-all transform active:scale-95 shadow-xl shadow-red-900/20"
 >
   PEDIR {quantity} UNIDADES POR ${totalConEnvio}
 </button>
+
+{/* Sección de Métodos de Pago con Detalles Bancarios */}
+<div className="mt-8 pt-6 border-t border-zinc-800 space-y-4">
+  <p className="text-zinc-500 text-[10px] font-black uppercase tracking-[0.2em] text-center">
+    Opciones de Pago Disponibles
+  </p>
+  
+  <div className="space-y-3">
+    {/* Opción 1: Transferencia Bancaria */}
+    <div className="bg-zinc-900/40 border border-zinc-800 rounded-2xl p-4 transition-all duration-300">
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <div className="w-2 h-2 rounded-full bg-[#00A3FF] animate-pulse"></div>
+          <span className="font-bold text-sm text-white">Transferencia Directa</span>
+        </div>
+        <button 
+          onClick={() => setShowBankDetails(!showBankDetails)}
+          className="text-[#00A3FF] text-[10px] font-black uppercase tracking-wider hover:text-white transition-colors"
+        >
+          {showBankDetails ? 'Cerrar' : 'Ver Detalles'}
+        </button>
+      </div>
+      
+      {/* Información Bancaria (Condicional) */}
+      {showBankDetails && (
+        <div className="mt-4 p-4 bg-black/60 rounded-xl border border-zinc-800/50 animate-in fade-in slide-in-from-top-2 duration-300">
+          <div className="space-y-2 text-[11px] font-medium leading-relaxed">
+            <div className="flex justify-between border-b border-zinc-900 pb-1">
+              <span className="text-zinc-500">Banco:</span>
+              <span className="text-white font-bold text-right">Banco Pichincha</span>
+            </div>
+            <div className="flex justify-between border-b border-zinc-900 pb-1">
+              <span className="text-zinc-500">Tipo:</span>
+              <span className="text-white font-bold text-right">Cuenta de Ahorros</span>
+            </div>
+            <div className="flex justify-between border-b border-zinc-900 pb-1">
+              <span className="text-zinc-500">Número:</span>
+              <span className="text-[#00A3FF] font-black text-right tracking-wider">2206472734</span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-zinc-500">Titular:</span>
+              <span className="text-white font-bold text-right">Andrés Alexander Túquerres</span>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+
+    {/* Opción 2: Pago Contra Entrega */}
+    <div className="bg-zinc-900/40 border border-zinc-800 rounded-2xl p-4 flex items-center justify-between">
+      <div className="flex items-center gap-3">
+        <div className="w-2 h-2 rounded-full bg-zinc-700"></div>
+        <span className="font-bold text-sm text-white">Pago Contra Entrega</span>
+      </div>
+      <span className="bg-zinc-800 text-zinc-500 text-[9px] px-2 py-1 rounded-md font-black uppercase">Disponible</span>
+    </div>
+  </div>
+</div>
 
             <div className="flex justify-center gap-6 opacity-30">
                <CreditCard size={20} />
