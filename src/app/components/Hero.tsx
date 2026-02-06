@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { CountdownTimer } from './CountdownTimer';
 import { Truck, Star, ChevronRight } from 'lucide-react';
-import imgHero from "figma:asset/8e652a8b1180cde524439f5637957f631c55980f.png";
+import imgHero from "../../assets/8e652a8b1180cde524439f5637957f631c55980f.png";
 
 interface HeroProps {
   quantity: number;
@@ -16,9 +16,10 @@ export const Hero = ({ quantity, total }: HeroProps) => {
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <img 
-          src="https://images.unsplash.com/photo-1700784795176-7ff886439d79?q=80&w=2000" 
-          alt="Gym Background" 
+          src= { imgHero }
+          alt="Creatina Monohidratada Athlon" 
           className="w-full h-full object-cover opacity-40 grayscale"
+          fetchpriority="high"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent" />
       </div>
