@@ -17,7 +17,7 @@ export const ProductSection = ({ quantity, setQuantity, total }: ProductProps) =
   const pricePerUnit = 24;
   const shippingCost = 6;
   const subtotal = quantity * pricePerUnit;
-
+ const totalConEnvio = subtotal + shippingCost;
   return (
     <section id="comprar" className="py-32 bg-white text-black">
       <div className="max-w-7xl mx-auto px-4 space-y-24">
@@ -135,13 +135,15 @@ export const ProductSection = ({ quantity, setQuantity, total }: ProductProps) =
               </div>
             </div>
 
-            <a 
-              href="#checkout" 
-              className="flex items-center justify-center gap-4 w-full bg-[#00A3FF] hover:bg-white text-white hover:text-black py-6 rounded-[1.5rem] font-black text-xl uppercase tracking-tighter transition-all transform hover:scale-[1.02] shadow-xl shadow-[#00A3FF]/20"
-            >
-              <ShoppingCart size={24} />
-              ORDENAR AHORA
-            </a>
+            <button 
+  data-tally-open="jaoKYY" 
+  data-tally-emoji-animation="none"
+  // Aquí enviamos dinámicamente las unidades y el precio final con envío
+  data-tally-hidden-fields={`unidades=${quantity}&total=${totalConEnvio}`}
+  className="w-full bg-red-600 text-white py-4 rounded-xl font-bold text-xl hover:bg-red-700 transition-all transform active:scale-95 shadow-lg"
+>
+  PEDIR {quantity} UNIDADES POR ${totalConEnvio}
+</button>
 
             <div className="flex justify-center gap-6 opacity-30">
                <CreditCard size={20} />
